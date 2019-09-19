@@ -1,0 +1,24 @@
+service: service-basic-demo
+frameworkVersion: '>=1.28.0'
+
+plugins:
+  - serverless-webpack
+
+custom:
+  webpack:
+    webpackConfig: webpack.config.js
+    packager: yarn
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: eu-central-1
+
+functions:
+  functionA:
+    handler: functions/functionA/A.default
+    name: functionA
+
+  functionB:
+    handler: functions/functionB/B.default
+    name: functionB

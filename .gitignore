@@ -1,0 +1,29 @@
+# package directories
+node_modules
+jspm_packages
+dist/
+npm-debug.log
+yarn-error.log
+
+.idea/*
+.vscode/*
+.DS_Store
+*.iml
+/build/
+/logs/
+coverage/*
+/test/jest/client-coverage/
+/test/jest/server-coverage/
+/karma-*
+test-client-report.xml
+test-server-report.xml
+test-client-jest-report.xml
+test-server-jest-report.xml
+
+
+#logs
+yarn-error.log
+
+# Serverless directories
+.serverless
+coverage

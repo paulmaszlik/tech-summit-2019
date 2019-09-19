@@ -1,0 +1,16 @@
+{
+  "name": "dynamodb-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "aws-sdk": "^2.529.0",
+    "middy": "^0.25.0",
+    "serverless-iam-roles-per-function": "^1.0.4",
+    "serverless-offline": "^4.4.2",
+    "serverless-pseudo-parameters": "^2.2.0",
+    "serverless-webpack": "^5.3.1",
+    "uuid": "^3.3.3",
+    "webpack": "^4.40.2"
+  }
+}

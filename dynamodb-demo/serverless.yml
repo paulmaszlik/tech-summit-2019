@@ -1,0 +1,59 @@
+service: service-dynamodb-demo
+frameworkVersion: '>=1.28.0'
+
+plugins:
+  - serverless-iam-roles-per-function
+  - serverless-pseudo-parameters
+  - serverless-offline
+  - serverless-webpack
+
+custom:
+  webpack:
+    webpackConfig: webpack.config.js
+    packager: yarn
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: eu-central-1
+
+functions:
+  functionA:
+    handler: functions/functionA/A.default
+    name: ${self:service}-functionA
+    events:
+      - http:
+          method: post
+          path: /item
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:PutItem
+        Resource: arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/${self:service}-table
+
+  functionB:
+    handler: functions/functionB/B.default
+    name: ${self:service}-functionB
+    events:
+      - http:
+          method: get
+          path: /item/{id}
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:GetItem
+        Resource: arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/${self:service}-table
+
+resources:
+  Resources:
+    dynamodbtable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:service}-table
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
