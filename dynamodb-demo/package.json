@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "aws-sdk": "^2.529.0",
+    "aws-sdk": "^2.814.0",
     "middy": "^0.25.0",
     "serverless-iam-roles-per-function": "^1.0.4",
     "serverless-offline": "^4.4.2",
